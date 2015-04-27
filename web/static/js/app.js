@@ -12,6 +12,10 @@ class App {
     socket.join("rooms:lobby", {"username" : username.val()}).receive("ok", channel => {
       console.log("Welcome to Easy Chat") 
 
+      channel.on("join", message => {
+        messageContainer.append(`<br/><i>You have joined the room</i>`) 
+      })
+
       channel.on("user_entered", message => {
         messageContainer.append(`<br/><i>[${message.username} entered]</i>`)
       })
